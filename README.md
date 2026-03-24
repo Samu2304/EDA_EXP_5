@@ -69,60 +69,15 @@ country_data['Daily_Deaths'] = country_data['Deaths'].diff().fillna(0)
 print("\nSample of processed data:")
 print(country_data.head())
 ```
-```
-plt.figure(figsize=(7,5))
-plt.scatter(country_data['Daily_Cases'], country_data['Daily_Deaths'], alpha=0.5, color='purple')
-plt.title(f'Bivariate Analysis: {country} COVID-19 Daily Cases vs Deaths')
-plt.xlabel('Daily Cases')
-plt.ylabel('Daily Deaths')
-plt.grid(True)
-plt.show()
-```
-```
-corr = country_data['Daily_Cases'].corr(country_data['Daily_Deaths'])
-print(f"\n Correlation between Daily Cases and Deaths in {country}: {corr:.3f}")
-```
-```
-X = country_data[['Daily_Cases']]
-y = country_data['Daily_Deaths']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
-
-model = LinearRegression()
-model.fit(X_train, y_train)
-```
-y_pred = model.predict(X_test)
-r2 = r2_score(y_test, y_pred)
-rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-print(f"\n Model Evaluation for {country}:")
-print(f"   R² Score  = {r2:.3f}")
-print(f"   RMSE      = {rmse:.3f}")
-```
-```
-plt.figure(figsize=(10,5))
-plt.plot(country_data['Date'][-len(y_test):], y_test, label='Actual Deaths', color='blue')
-plt.plot(country_data['Date'][-len(y_pred):], y_pred, label='Predicted Deaths', color='red', linestyle='--')
-```
-```
-future_cases = np.linspace(X['Daily_Cases'].max()*0.5, X['Daily_Cases'].max()*1.2, 10).reshape(-1, 1)
-future_pred = model.predict(future_cases)
-print("\n Forecast of Future Deaths based on Case Count:")
-for c, d in zip(future_cases.flatten(), future_pred):
-  print(f"   Predicted deaths for {int(c)} cases ≈ {d:.1f}")
-  ```
-```
-plt.figure(figsize=(10,5))
-plt.plot(country_data['Date'], country_data['Daily_Cases'], label='Daily Cases', color='green')
-plt.plot(country_data['Date'], country_data['Daily_Deaths'], label='Daily Deaths', color='orange')
-plt.title(f'{country}: COVID-19 Daily Cases and Deaths Over Time')
-plt.xlabel('Date')
-plt.ylabel('Count')
-plt.legend()
-plt.grid(True)
-plt.show()
-```
-```
 **Output**
+<img width="772" height="294" alt="image" src="https://github.com/user-attachments/assets/90d8b5fc-354d-4272-b113-7926712b9d99" />
+
+<img width="893" height="522" alt="image" src="https://github.com/user-attachments/assets/15b2ef78-24b0-4102-ab87-13b329576483" />
+
+<img width="1132" height="509" alt="image" src="https://github.com/user-attachments/assets/e038cbbb-0551-4c7e-8ca3-e4a21158c925" />
+
+<img width="1073" height="530" alt="image" src="https://github.com/user-attachments/assets/74807da0-6e1b-4a13-9af8-0d899cdff03e" />
 
 
 **Result**
